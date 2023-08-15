@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectContainer : MonoBehaviour
 {
     public bool isFull;
     public GameManager gameManager;
-    //public Image backgroundImage;
+    public Image backgroundImage;
 
     private void Start()
     {
@@ -20,14 +21,14 @@ public class ObjectContainer : MonoBehaviour
             if (this.gameManager.draggingObj != null && this.isFull == false)
             {
                 this.gameManager.currentContaiter = this.gameObject;
-                //this.backgroundImage.enabled = true;
+                this.backgroundImage.enabled = true;
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //this.backgroundImage.enabled = false;
+        this.backgroundImage.enabled = false;
         this.gameManager.currentContaiter = null;
     }
 }

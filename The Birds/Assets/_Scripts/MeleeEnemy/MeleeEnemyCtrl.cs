@@ -10,8 +10,9 @@ public class MeleeEnemyCtrl : EnemyCtrl
 
     public LayerMask playerLayer;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         GetComponent<EnemyMovement>().SetSpeed(this.meleeEnemy_SO.speedWalk);
     }
 

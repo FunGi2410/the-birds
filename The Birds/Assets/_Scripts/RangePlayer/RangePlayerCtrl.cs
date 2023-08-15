@@ -49,7 +49,7 @@ public class RangePlayerCtrl : PlayerCtrl
 
     public GameObject InstanceBullet(Transform origin)
     {
-        Debug.Log(this.rangePlayerSO.bulletPrefab.transform.localScale);
+        //Debug.Log(this.rangePlayerSO.bulletPrefab.transform.localScale);
         GameObject projectile = Instantiate(this.rangePlayerSO.bulletPrefab, origin.transform);
         projectile.transform.localScale *= new Vector2(1 / transform.localScale.x, 1 / transform.localScale.y);
         projectile.transform.localScale *= new Vector2(1 / objectContainer.localScale.x, 1 / objectContainer.localScale.y);

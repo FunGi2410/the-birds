@@ -15,11 +15,17 @@ public class EnemyCtrl : MonoBehaviour
 
     public float maxHealth;
     [SerializeField] float currentHealth;
+    public float CurrentHealth   
+    {
+        get { return currentHealth; }   
+        set { currentHealth = value; }  
+    }
 
     public float distanceToPlayer;
 
-    private void Start()
+    protected virtual void Start()
     {
+        this.maxHealth = meleeEnemy_SO.health;
         this.currentHealth = this.maxHealth;
     }
 

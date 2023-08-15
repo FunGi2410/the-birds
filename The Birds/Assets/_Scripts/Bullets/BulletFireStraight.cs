@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class BulletFireStraight : Bullet
 {
-    /*protected override void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-        //Destroy(gameObject);
-    }*/
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
+    }
 }

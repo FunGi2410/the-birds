@@ -26,17 +26,19 @@ public class EnemySpawner : MonoBehaviour
 
     protected virtual void Spawn()
     {
-        if (this.enemies.Count != 0)
+        if (this.enemies.Count > 0)
         {
-            this.indexEnemy = Random.Range(0, this.enemies.Count - 1);
+            /*this.indexEnemy = Random.Range(0, this.enemies.Count - 1);*/
+            this.indexEnemy = Random.Range(0, this.enemies.Count);
         }
         else return;
         this.ranPosSpawner = Random.Range(0, maxAmountSpawnerPoint);
-        Instantiate(this.enemies[this.indexEnemy].enemyPrefabs, transform.GetChild(this.ranPosSpawner).transform);
-        this.enemies[indexEnemy].amount--;
         if (this.enemies[indexEnemy].amount == 0)
         {
             this.enemies.RemoveAt(indexEnemy);
+            return;
         }
+        GameObject enemyObj = Instantiate(this.enemies[this.indexEnemy].enemyPrefabs, transform.GetChild(this.ranPosSpawner).transform);
+        this.enemies[indexEnemy].amount--;
     }
 }
