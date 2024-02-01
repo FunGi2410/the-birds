@@ -16,7 +16,7 @@ MonoBehaviour:
   timming: 0
   enemyID: 0
   attackRange: 40
-  speedWalk: 20
+  speedWalk: 0.5
   fireRate: 0.5
   damage: 10
   health: 100

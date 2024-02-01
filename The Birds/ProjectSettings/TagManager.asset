@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Canvas
   - TargetPosInBar
+  - CurSunScore
   layers:
   - Default
   - TransparentFX

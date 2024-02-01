@@ -6,26 +6,26 @@ using UnityEngine.Events;
 
 public class CardInBar : MonoBehaviour, IPointerDownHandler
 {
-    //private Transform posTargetInBar;
     public float speed;
-    //public Canvas canvas;
-
     public Transform posCardSelect;
 
+    public GameObject canvas;
+
     bool isReturn = false;
+
+    [SerializeField] private GameObject cardInGame;
 
     public static UnityAction ChangePosCard;
     //public static UnityAction StateCardSelect;
 
     private void Start()
     {
-        //this.canvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
-        //this.posTargetInBar = GameObject.FindGameObjectWithTag("TargetPosInBar").GetComponent<Transform>();
-        //this.posTargetInBar = InBarManager.Instance.targetPosInBars[InBarManager.Instance.targetPosInBars.Count - 1].transform;
-        //this.posTargetInBar.position = InBarManager.Instance.targetPosInBars[InBarManager.Instance.targetPosInBars.Count - 1].transform.position;
-        
         StartCoroutine(MoveToTarget(InBarManager.Instance.targetPosInBars[InBarManager.Instance.targetPosInBars.Count - 1].transform));
         InBarManager.Instance.AddTargetPos();
+
+        this.canvas = GameObject.FindGameObjectWithTag("Canvas");
+
+        GameManager.startGame += this.DesCardBarAndInitCardGame;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -39,6 +39,15 @@ public class CardInBar : MonoBehaviour, IPointerDownHandler
         StartCoroutine(MoveToTarget(this.posCardSelect));
     }
 
+    public void DesCardBarAndInitCardGame()
+    {
+        // Init card in game
+        GameObject cardGameInstance = Instantiate(this.cardInGame, this.canvas.transform);
+        cardGameInstance.transform.position = this.transform.position;
+        // Destroy card in bar
+        Destroy(this.gameObject);
+    }
+
     public void MoveEvent(Transform target)
     {
         StartCoroutine(MoveToTarget(target));
@@ -46,31 +55,34 @@ public class CardInBar : MonoBehaviour, IPointerDownHandler
 
     IEnumerator MoveToTarget(Transform posTarget)
     {
-        while (this.gameObject.transform.position != posTarget.position)
+        while (true)
         {
-            print(this.gameObject.name);
-            Vector2 dir = posTarget.position - this.gameObject.transform.position;
-            print(dir.sqrMagnitude);
-            if (Mathf.Abs(dir.sqrMagnitude) < 200f)
+            //print(this.gameObject.name);
+            /*Vector2 dir = posTarget.position - this.gameObject.transform.position;
+            print(dir.sqrMagnitude);*/
+            //print(Vector3.Distance(transform.position, posTarget.position));
+            if (Vector3.Distance(transform.position, posTarget.position) < 0.001f/*Mathf.Abs(dir.sqrMagnitude) < 200f*/)
             {
-                /*StopCoroutine("MoveToTarget");
-                print("stop coroudtine");*/
+                StopCoroutine("MoveToTarget");
+                //print("stop coroudtine");
                 //this.cardSelectInBarInstance = Instantiate(this.gameObject, this.canvas.transform);
-                this.gameObject.transform.position = new Vector2(posTarget.position.x, posTarget.position.y);
+                //this.gameObject.transform.position = new Vector2(posTarget.position.x, posTarget.position.y);
+
                 if (this.isReturn)
                 {
                     Destroy(this.gameObject);
+                    GameManager.startGame -= this.DesCardBarAndInitCardGame;
                     InBarManager.Instance.selectedCards.Remove(this.gameObject);
                     ChangePosCard?.Invoke();
 
                     this.posCardSelect.GetComponent<CardSelect>().SetStateCard();
                     //StateCardSelect?.Invoke();
                 }
+                break;
             }
-            
-            dir = dir.normalized;
-            this.gameObject.transform.Translate(dir * this.speed);
-            //transform.Translate(dir * this.speed * 0.01f);
+
+            transform.position = Vector3.MoveTowards(transform.position, posTarget.position, this.speed);
+
             yield return new WaitForSeconds(0.01f);
         }
     }

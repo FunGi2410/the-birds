@@ -7,6 +7,7 @@ public class RangePlayer_SO : ScriptableObject
 {
     public string playerName;
     public float timming;
+    public int price;
     //public SoldierID soldierID;
 
     public float fireRate;

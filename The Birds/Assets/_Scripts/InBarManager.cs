@@ -8,7 +8,7 @@ public class InBarManager : MonoBehaviour
     public List<GameObject> selectedCards;
     public int curMaxSlot;
 
-    Vector3 nextToPos = new Vector3(107.3f, 0f);
+    [SerializeField]Vector2 nextToPos = new Vector2(107.3f, 0f);
 
     public static InBarManager Instance { get; private set; }
     void Awake()
@@ -21,10 +21,10 @@ public class InBarManager : MonoBehaviour
     public void AddTargetPos()
     {
         if (this.targetPosInBars.Count > this.curMaxSlot) return;
-        //GameObject targetPos = Instantiate(this.targetPosInBars[0], this.gameObject.transform);
-        GameObject targetPos = new GameObject();
-        targetPos.transform.parent = this.gameObject.transform;
-        targetPos.transform.position = this.targetPosInBars[this.targetPosInBars.Count - 1].transform.position + this.nextToPos;
+        GameObject targetPos = Instantiate(this.targetPosInBars[0], this.gameObject.transform);
+        //GameObject targetPos = new GameObject();
+        //targetPos.transform.parent = this.gameObject.transform;
+        targetPos.GetComponent<RectTransform>().anchoredPosition = this.targetPosInBars[this.targetPosInBars.Count - 1].GetComponent<RectTransform>().anchoredPosition + this.nextToPos;
         print(this.targetPosInBars[this.targetPosInBars.Count - 1]);
         this.targetPosInBars.Add(targetPos);
     }

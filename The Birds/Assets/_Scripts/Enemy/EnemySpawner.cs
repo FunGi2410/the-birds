@@ -14,6 +14,25 @@ public class EnemySpawner : MonoBehaviour
     float nextSpawnTime = 0.5f;
     float timer = 0f;
 
+    [SerializeField] int aliveAmountEnemyCurrent;
+
+    public int AliveAmountEnemyCurrent { 
+        get => aliveAmountEnemyCurrent; 
+        set
+        {
+            if(value >= 0) aliveAmountEnemyCurrent = value;
+        }
+    }
+
+    private void Start()
+    {
+        EnemyCtrl enemy = FindObjectOfType<EnemyCtrl>();
+        if (enemy != null)
+        {
+            enemy.OneEnemyDead += EnemyDead;
+        }
+    }
+
     private void Update()
     {
         this.timer += Time.deltaTime;
@@ -22,6 +41,11 @@ public class EnemySpawner : MonoBehaviour
             this.Spawn();
             this.timer = 0f;
         }
+    }
+
+    public void EnemyDead()
+    {
+        this.AliveAmountEnemyCurrent--;
     }
 
     protected virtual void Spawn()
@@ -39,6 +63,7 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
         GameObject enemyObj = Instantiate(this.enemies[this.indexEnemy].enemyPrefabs, transform.GetChild(this.ranPosSpawner).transform);
+        this.AliveAmountEnemyCurrent++;
         this.enemies[indexEnemy].amount--;
     }
 }

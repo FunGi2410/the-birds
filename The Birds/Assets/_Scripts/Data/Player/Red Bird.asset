@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: Red Bird
   timming: 20
-  fireRate: 0.5
+  price: 100
+  fireRate: 2
   damage: 10
   health: 1
-  speedMoveBullet: 100
+  speedMoveBullet: 15
   bulletPrefab: {fileID: 2381777494911475866, guid: 671c71b477a73f441ad8496bf669ba07, type: 3}
