@@ -9,6 +9,11 @@ public class BulletFireStraight : Bullet
         base.OnTriggerEnter2D(collision);
         if (collision.gameObject.tag == "Enemy")
         {
+            IDamageable damageableObject = collision.GetComponent<IDamageable>();
+            if(damageableObject != null)
+            {
+                damageableObject.TakeDame(this.rangePlayerSO.damage);
+            }
             Destroy(gameObject);
         }
     }

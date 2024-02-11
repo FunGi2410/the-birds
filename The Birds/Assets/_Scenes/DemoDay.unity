@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.081
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.09690633, g: 0.20555088, b: 0.271886, a: 0.081}
+  m_IndirectSpecularColor: {r: 0.09690607, g: 0.20555037, b: 0.2718856, a: 0.081}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5335,7 +5335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   draggingObj: {fileID: 0}
   currentContaiter: {fileID: 0}
-  sunScore: 0
+  sunScore: 500
 --- !u!4 &349633755
 Transform:
   m_ObjectHideFlags: 0

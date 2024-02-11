@@ -24,14 +24,14 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void Start()
+    /*private void Start()
     {
         EnemyCtrl enemy = FindObjectOfType<EnemyCtrl>();
         if (enemy != null)
         {
             enemy.OneEnemyDead += EnemyDead;
         }
-    }
+    }*/
 
     private void Update()
     {

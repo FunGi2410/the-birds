@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyCtrl : MonoBehaviour
+public class EnemyCtrl : LivingEntity
 {
-    public UnityAction OneEnemyDead;
+    //public UnityAction OneEnemyDead;
     /*public static EnemyCtrl Instance { get; private set; }
     void Awake()
     {
@@ -15,23 +15,26 @@ public class EnemyCtrl : MonoBehaviour
     [SerializeField]
     protected MeleeEnemy_SO meleeEnemy_SO;
 
-    public float maxHealth;
+    /*public float maxHealth;
     [SerializeField] float currentHealth;
     public float CurrentHealth   
     {
         get { return currentHealth; }   
         set { currentHealth = value; }  
-    }
+    }*/
 
-    public float distanceToPlayer;
+    //public float distanceToPlayer;
 
-    protected virtual void Start()
+    protected override void Start()
     {
-        this.maxHealth = meleeEnemy_SO.health;
-        this.currentHealth = this.maxHealth;
+       /* this.maxHealth = meleeEnemy_SO.health;
+        this.currentHealth = this.maxHealth;*/
+
+        this.startingHealth = meleeEnemy_SO.health;
+        this.health = this.startingHealth;
     }
 
-    public void TakeDamage(float dame)
+    /*public void TakeDamage(float dame)
     {
         this.currentHealth -= dame;
 
@@ -48,5 +51,5 @@ public class EnemyCtrl : MonoBehaviour
         Debug.Log("Enemy died");
         OneEnemyDead.Invoke();
         Destroy(gameObject);
-    }
+    }*/
 }

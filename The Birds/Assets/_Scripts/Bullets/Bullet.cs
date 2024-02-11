@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         //print(collision.name);
-        if(collision.gameObject.tag == "Enemy")
+        /*if(collision.gameObject.tag == "Enemy")
         {
             EnemyCtrl enemyCtrl = collision.transform.GetComponent<EnemyCtrl>();
             if(enemyCtrl == null)
@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
             }
             enemyCtrl.TakeDamage(this.rangePlayerSO.damage);
             //print(collision.name + " " + enemyCtrl.CurrentHealth);
-        }
+        }*/
     }
 
     protected virtual void OnDestroy()
