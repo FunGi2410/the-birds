@@ -24,8 +24,9 @@ public class RangePlayerCtrl : PlayerCtrl
         this.eventHandler = GetComponent<AnimationEventHandler>();
     }*/
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         this.animator = GetComponent<Animator>();
         this.canvas = GameObject.FindGameObjectWithTag("Canvas");
     }

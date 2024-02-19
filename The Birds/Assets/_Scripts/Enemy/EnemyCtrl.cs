@@ -6,11 +6,6 @@ using UnityEngine.Events;
 public class EnemyCtrl : LivingEntity
 {
     //public UnityAction OneEnemyDead;
-    /*public static EnemyCtrl Instance { get; private set; }
-    void Awake()
-    {
-        Instance = this;
-    }*/
 
     [SerializeField]
     protected MeleeEnemy_SO meleeEnemy_SO;
@@ -25,11 +20,8 @@ public class EnemyCtrl : LivingEntity
 
     //public float distanceToPlayer;
 
-    protected override void Start()
+    protected virtual void Start()
     {
-       /* this.maxHealth = meleeEnemy_SO.health;
-        this.currentHealth = this.maxHealth;*/
-
         this.startingHealth = meleeEnemy_SO.health;
         this.health = this.startingHealth;
     }

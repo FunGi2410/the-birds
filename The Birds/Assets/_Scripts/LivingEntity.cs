@@ -5,16 +5,11 @@ using UnityEngine;
 public class LivingEntity : MonoBehaviour, IDamageable
 {
     public float startingHealth;
-    protected float health;
+    [SerializeField] protected float health;
     protected bool dead;
 
     public event System.Action OnDeath;
     public event System.Action OnTakeDame;
-
-    protected virtual void Start()
-    {
-        this.health = this.startingHealth;
-    }
 
     public void TakeDame(float dame)
     {

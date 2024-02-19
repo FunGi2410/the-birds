@@ -43,7 +43,12 @@ public class MeleeEnemyCtrl : EnemyCtrl
         foreach (Collider2D player in hitPlayers)
         {
             Debug.Log("We hit " + player.name);
-            player.GetComponent<PlayerCtrl>().TakeDamage(this.meleeEnemy_SO.damage);
+            //player.GetComponent<PlayerCtrl>().TakeDamage(this.meleeEnemy_SO.damage);
+            IDamageable damageableObject = player.GetComponent<IDamageable>();
+            if (damageableObject != null)
+            {
+                damageableObject.TakeDame(this.meleeEnemy_SO.damage);
+            }
         }
     }
 

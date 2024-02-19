@@ -19,4 +19,4 @@ MonoBehaviour:
   speedWalk: 0.5
   fireRate: 0.5
   damage: 10
-  health: 100
+  health: 1000
