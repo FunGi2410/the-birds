@@ -11,4 +11,14 @@ public class Objects_SO : ScriptableObject
     {
         return this.allObjectData;
     }
+
+    public GameObject GetObjectInData(int index)
+    {
+        return this.allObjectData[index];
+    }
+
+    public int GetLength()
+    {
+        return this.allObjectData.Count;
+    }
 }

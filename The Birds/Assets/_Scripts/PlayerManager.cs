@@ -8,9 +8,19 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private List<GameObject> birdCardCollection;
     [SerializeField] private Objects_SO birdCardCollectionData;
 
-    private void Start()
+    private void Awake()
     {
         this.birdCardCollection = this.birdCardCollectionData.GetAllObjectsData();
+    }
+
+    /*private void Start()
+    {
+        this.birdCardCollection = this.birdCardCollectionData.GetAllObjectsData();
+    }*/
+
+    public List<GameObject> GetBirdCardCollection()
+    {
+        return this.birdCardCollection;
     }
 
     public void UnlockNewPlantCard(int indexPlantCard)

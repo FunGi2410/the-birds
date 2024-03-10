@@ -10,12 +10,17 @@ public class CardSelect : MonoBehaviour, IPointerDownHandler
 
     public GameObject cardInBar;
 
-    public Canvas canvas;
+    public GameObject canvas;
 
     bool isChoosed = false;
     private bool isUnlocked;
 
     public bool IsUnlocked { get => isUnlocked; set => isUnlocked = value; }
+
+    private void Start()
+    {
+        this.canvas = GameObject.FindGameObjectWithTag("Canvas");
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {
