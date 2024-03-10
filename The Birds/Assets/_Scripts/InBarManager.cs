@@ -25,7 +25,7 @@ public class InBarManager : MonoBehaviour
         //GameObject targetPos = new GameObject();
         //targetPos.transform.parent = this.gameObject.transform;
         targetPos.GetComponent<RectTransform>().anchoredPosition = this.targetPosInBars[this.targetPosInBars.Count - 1].GetComponent<RectTransform>().anchoredPosition + this.nextToPos;
-        print(this.targetPosInBars[this.targetPosInBars.Count - 1]);
+        //print(this.targetPosInBars[this.targetPosInBars.Count - 1]);
         this.targetPosInBars.Add(targetPos);
     }
 

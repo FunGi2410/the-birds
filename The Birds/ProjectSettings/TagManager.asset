@@ -9,6 +9,9 @@ TagManager:
   - Canvas
   - TargetPosInBar
   - CurSunScore
+  - RewardCard
+  - PlayerManager
+  - LevelManager
   layers:
   - Default
   - TransparentFX

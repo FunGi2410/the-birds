@@ -14,42 +14,38 @@ public class RangePlayerCtrl : PlayerCtrl
     [SerializeField] bool isAttack = false;
     Animator animator;
 
-    [SerializeField] GameObject canvas;
-
-    /*private AnimationEventHandler eventHandler;
-    public event Action OnExit;
-
-    private void Awake()
-    {
-        this.eventHandler = GetComponent<AnimationEventHandler>();
-    }*/
-
     protected override void Start()
     {
         base.Start();
         this.animator = GetComponent<Animator>();
-        this.canvas = GameObject.FindGameObjectWithTag("Canvas");
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         this.Attack();
-    }
 
-    /*private void Exit()
-    {
-        this.OnExit?.Invoke();
-    }
+        // Raycast to Enemy to shoot
+        //RaycastHit2D hit = Physics2D.Raycast(transform.GetChild(0).position, Vector2.right * UIManager.instance.HalfWidthOfCanvas);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.GetChild(0).position, Vector2.right * UIManager.instance.HalfWidthOfCanvas);
+        //Debug.DrawRay(transform.position, Vector2.right * UIManager.instance.HalfWidthOfCanvas, Color.red);
 
-    private void OnEnable()
-    {
-        this.eventHandler.OnFinish += Exit;
+        bool isHaveEnemy = false;
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                isHaveEnemy = true;
+                this.isAttack = true;
+                Debug.DrawRay(transform.position, hit.transform.position - transform.position, Color.green);
+            }
+        }
+        if (!isHaveEnemy) this.isAttack = false;
+       /* print(hit.collider.name);
+        if (hit.collider.CompareTag("Enemy"))
+        {
+            Debug.DrawRay(transform.position, hit.transform.position - transform.position, Color.green);
+        }*/
     }
-
-    private void OnDisable()
-    {
-        this.eventHandler.OnFinish -= Exit;
-    }*/
 
     public void CompletedAttackEvent(string mes)
     {
@@ -75,8 +71,6 @@ public class RangePlayerCtrl : PlayerCtrl
         if (this.CheckFireRate() && this.isAttack)
         {
             this.animator.SetBool("IsAttack", true);
-            
-            
         }
 
         /*if (PlayerCombat.Instance.isAttack)

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class EnemyCtrl : LivingEntity
 {
-    //public UnityAction OneEnemyDead;
+    public static UnityAction OnEnemyDead;
 
     [SerializeField]
     protected MeleeEnemy_SO meleeEnemy_SO;
@@ -19,6 +19,11 @@ public class EnemyCtrl : LivingEntity
     }*/
 
     //public float distanceToPlayer;
+    protected override void Die()
+    {
+        base.Die();
+        OnEnemyDead?.Invoke();
+    }
 
     protected virtual void Start()
     {

@@ -11,20 +11,15 @@ public class SpawnSun : MonoBehaviour
 
     private float spawnAngleMax = 15f;
 
-    //[SerializeField] private RectTransform canvasRec;
-
-
     private void Start()
     {
-        //this.screenHalfHeightInWorldUnits = Camera.main.orthographicSize;
-        /*this.halfHeightOfCanvas = canvasRec.rect.height / 2;
-        this.halfWidthOfCanvas = canvasRec.rect.width / 2;*/
         float sunHeight = sunPrefab.GetComponent<RectTransform>().rect.height;
         UIManager.instance.HalfHeightOfCanvas += sunHeight;
     }
 
     private void Update()
     {
+        if (!GameManager.instance.IsStartGame) return;
         float secondsBetweenSpawn = Random.Range(secondsBetweenSpawnMinMax.x, secondsBetweenSpawnMinMax.y);
         timer += Time.deltaTime;
         if (timer < secondsBetweenSpawn) return;

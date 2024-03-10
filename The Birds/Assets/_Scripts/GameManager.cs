@@ -11,14 +11,34 @@ public class GameManager : MonoBehaviour
 
     public static UnityAction startGame;
 
+    private float curTimerGame;
+    private bool isStartGame = false;
+    private bool isGameOver = false;
+    private bool isPauseGame = false;
+
     [SerializeField] private const int ONESUNSCORE = 25;
     [SerializeField] private int sunScore;
 
     public int SunScore { get => sunScore; set => sunScore = value; }
+    public float CurTimerGame { get => curTimerGame; set => curTimerGame = value; }
+    public bool IsStartGame { get => isStartGame; set => isStartGame = value; }
+    public bool IsGameOver { get => isGameOver; set => isGameOver = value; }
+    public bool IsPauseGame { get => isPauseGame; set => isPauseGame = value; }
 
     private void Awake()
     {
         instance = this;
+    }
+
+    
+    public IEnumerator StartCountTimer()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1.0f);
+            CurTimerGame++;
+            UIManager.instance.TimeGameText.text = CurTimerGame.ToString();
+        }
     }
 
     public void AddSun()
@@ -46,8 +66,29 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
+    public void OnGameOver()
+    {
+        this.IsGameOver = true;
+        this.PauseGame();
+        UIManager.instance.DisplayGameOverPanel();
+    }
+
     public void OnStartGame()
     {
+        this.IsStartGame = true;
         startGame?.Invoke();
+        StartCoroutine(StartCountTimer());
+    }
+
+    public void PauseGame()
+    {
+        this.IsPauseGame = true;
+        Time.timeScale = 0;
+    }
+
+    void ResumeGame()
+    {
+        this.IsPauseGame = false;
+        Time.timeScale = 1;
     }
 }

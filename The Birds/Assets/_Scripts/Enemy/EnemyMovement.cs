@@ -8,14 +8,17 @@ public class EnemyMovement : MonoBehaviour
     Rigidbody2D myRigidbody2D;
     Vector2 moveInput;
     float speed;
+    MeleeEnemyCtrl meleeEnemyCtrl;
 
     private void Start()
     {
         this.myRigidbody2D = GetComponent<Rigidbody2D>();
+        this.meleeEnemyCtrl = GetComponent<MeleeEnemyCtrl>();
     }
 
     private void FixedUpdate()
     {
+        if (this.meleeEnemyCtrl.IsAttack) return;
         this.Move();
     }
 

@@ -67,8 +67,7 @@ public class ObjectCard : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoi
     {
         if (this.isTimming || !this.IsEnoughSunPrice()) return;
         //this.objectDragInstance.transform.position = Input.mousePosition;
-        this.rectObjDrag.anchoredPosition += eventData.delta;
-        
+        if(this.rectObjDrag != null) this.rectObjDrag.anchoredPosition += eventData.delta;
     }
 
     public void OnPointerDown(PointerEventData eventData)

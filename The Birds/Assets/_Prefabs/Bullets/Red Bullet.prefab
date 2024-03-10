@@ -139,9 +139,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7591176205951490656}
     m_Modifications:
+    - target: {fileID: 1148514201019224, guid: 6954451c3a62a5c40a1d13696a5cc4c1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294501370740376, guid: 6954451c3a62a5c40a1d13696a5cc4c1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434975849356750, guid: 6954451c3a62a5c40a1d13696a5cc4c1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846678540981650, guid: 6954451c3a62a5c40a1d13696a5cc4c1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1975959190090480, guid: 6954451c3a62a5c40a1d13696a5cc4c1, type: 3}
       propertyPath: m_Name
       value: Red Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975959190090480, guid: 6954451c3a62a5c40a1d13696a5cc4c1, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1975959190090480, guid: 6954451c3a62a5c40a1d13696a5cc4c1, type: 3}
       propertyPath: m_IsActive

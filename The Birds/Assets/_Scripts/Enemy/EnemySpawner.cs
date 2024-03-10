@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public List<Enemy> enemies;
-    //public List<GameObject> enemyPrefabs;
     private int indexEnemy;
     private int ranPosSpawner;
 
@@ -13,8 +12,10 @@ public class EnemySpawner : MonoBehaviour
 
     float nextSpawnTime = 0.5f;
     float timer = 0f;
+    [SerializeField] float startSpawnTime;
 
     [SerializeField] int aliveAmountEnemyCurrent;
+    private LevelManager levelManager;
 
     public int AliveAmountEnemyCurrent { 
         get => aliveAmountEnemyCurrent; 
@@ -24,17 +25,15 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    /*private void Start()
+    private void Start()
     {
-        EnemyCtrl enemy = FindObjectOfType<EnemyCtrl>();
-        if (enemy != null)
-        {
-            enemy.OneEnemyDead += EnemyDead;
-        }
-    }*/
+        this.levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+        EnemyCtrl.OnEnemyDead += EnemyDead;
+    }
 
     private void Update()
     {
+        if (GameManager.instance.CurTimerGame < this.startSpawnTime) return;
         this.timer += Time.deltaTime;
         if (this.timer >= this.nextSpawnTime)
         {
@@ -50,12 +49,19 @@ public class EnemySpawner : MonoBehaviour
 
     protected virtual void Spawn()
     {
+        if(this.AliveAmountEnemyCurrent <= 0 && this.enemies.Count <= 0)
+        {
+            this.levelManager.WinLevel();
+            GameManager.instance.PauseGame();
+            return;
+        }
         if (this.enemies.Count > 0)
         {
             /*this.indexEnemy = Random.Range(0, this.enemies.Count - 1);*/
             this.indexEnemy = Random.Range(0, this.enemies.Count);
         }
         else return;
+        
         this.ranPosSpawner = Random.Range(0, maxAmountSpawnerPoint);
         if (this.enemies[indexEnemy].amount == 0)
         {

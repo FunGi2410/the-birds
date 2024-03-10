@@ -9,11 +9,17 @@ public class MeleeEnemyCtrl : EnemyCtrl
     float nextTimeToFire = 0f;
 
     public LayerMask playerLayer;
+    Animator animator;
+
+    [SerializeField] private bool isAttack = false;
+
+    public bool IsAttack { get => isAttack; set => isAttack = value; }
 
     protected override void Start()
     {
         base.Start();
         GetComponent<EnemyMovement>().SetSpeed(this.meleeEnemy_SO.speedWalk);
+        this.animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -40,17 +46,31 @@ public class MeleeEnemyCtrl : EnemyCtrl
         // Detect enemies in range of attack
         Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(this.attackPoint.position, this.meleeEnemy_SO.attackRange, this.playerLayer);
         // Damage them
+        if (hitPlayers.Length <= 0)
+        {
+            this.IsAttack = false;
+            this.animator.SetBool("IsAttack", false);
+            return;
+        }
         foreach (Collider2D player in hitPlayers)
         {
-            Debug.Log("We hit " + player.name);
-            //player.GetComponent<PlayerCtrl>().TakeDamage(this.meleeEnemy_SO.damage);
             IDamageable damageableObject = player.GetComponent<IDamageable>();
             if (damageableObject != null)
             {
+                this.IsAttack = true;
+                this.animator.SetBool("IsAttack", true);
                 damageableObject.TakeDame(this.meleeEnemy_SO.damage);
             }
         }
     }
+
+   /*public void CompletedAttackEvent(string mes)
+    {
+        if (mes.Equals("AttackAnimationEnded"))
+        {
+            this.animator.SetBool("IsAttack", false);
+        }
+    }*/
 
     private void OnDrawGizmosSelected()
     {

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TableSelection : MonoBehaviour
 {
-    public Animator anim;
+    [SerializeField] private Animator anim;
+    private bool isActive = true;
     void Start()
     {
         this.anim = GetComponent<Animator>();
@@ -13,5 +14,11 @@ public class TableSelection : MonoBehaviour
     public void OnStartGameLevel()
     {
         this.anim.SetTrigger("StartLevel");
+    }
+
+    public void SetActiveObject()
+    {
+        this.isActive = !this.isActive;
+        this.gameObject.SetActive(this.isActive);
     }
 }

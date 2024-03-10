@@ -13,7 +13,9 @@ public class CardSelect : MonoBehaviour, IPointerDownHandler
     public Canvas canvas;
 
     bool isChoosed = false;
+    private bool isUnlocked;
 
+    public bool IsUnlocked { get => isUnlocked; set => isUnlocked = value; }
 
     public void OnPointerDown(PointerEventData eventData)
     {
