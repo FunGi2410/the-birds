@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public List<Enemy> enemies;
+    [SerializeField] private List<EnemyWaves> enemyWaves;
     private int indexEnemy;
     private int ranPosSpawner;
 
     private const int maxAmountSpawnerPoint = 5;
 
-    float nextSpawnTime = 0.5f;
+    [SerializeField] float nextSpawnTime = 0.5f;
     float timer = 0f;
     [SerializeField] float startSpawnTime;
 
     [SerializeField] int aliveAmountEnemyCurrent;
     private LevelManager levelManager;
+    private int indexWave = 0; // increse 1 
 
     public int AliveAmountEnemyCurrent { 
         get => aliveAmountEnemyCurrent; 
@@ -49,27 +50,29 @@ public class EnemySpawner : MonoBehaviour
 
     protected virtual void Spawn()
     {
-        if(this.AliveAmountEnemyCurrent <= 0 && this.enemies.Count <= 0)
+        if (this.AliveAmountEnemyCurrent <= 0 && this.enemyWaves[indexWave].Enemies.Count <= 0)
         {
             this.levelManager.WinLevel();
             GameManager.instance.PauseGame();
             return;
         }
-        if (this.enemies.Count > 0)
+        if (this.enemyWaves[indexWave].Enemies.Count > 0)
         {
-            /*this.indexEnemy = Random.Range(0, this.enemies.Count - 1);*/
-            this.indexEnemy = Random.Range(0, this.enemies.Count);
+            this.indexEnemy = Random.Range(0, this.enemyWaves[indexWave].Enemies.Count - 1);
+            //this.indexEnemy = Random.Range(0, this.enemies.Count);
         }
         else return;
-        
+
         this.ranPosSpawner = Random.Range(0, maxAmountSpawnerPoint);
-        if (this.enemies[indexEnemy].amount == 0)
+        if (this.enemyWaves[indexWave].Enemies[indexEnemy].amount == 0)
         {
-            this.enemies.RemoveAt(indexEnemy);
+            this.enemyWaves[indexWave].Enemies.RemoveAt(indexEnemy);
+            if (this.enemyWaves[indexWave].Enemies.Count <= 0 && indexWave < this.enemyWaves.Count - 1) indexWave++;
+
             return;
         }
-        GameObject enemyObj = Instantiate(this.enemies[this.indexEnemy].enemyPrefabs, transform.GetChild(this.ranPosSpawner).transform);
+        GameObject enemyObj = Instantiate(this.enemyWaves[indexWave].Enemies[this.indexEnemy].enemyPrefabs, transform.GetChild(this.ranPosSpawner).transform);
         this.AliveAmountEnemyCurrent++;
-        this.enemies[indexEnemy].amount--;
+        this.enemyWaves[indexWave].Enemies[indexEnemy].amount--;
     }
 }

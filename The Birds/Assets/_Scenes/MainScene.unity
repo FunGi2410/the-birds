@@ -621,37 +621,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6625984507259324429, guid: ccebfc242bed46749a5dcef87dd83423, type: 3}
   m_PrefabInstance: {fileID: 33210540}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &35459868
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 35459869}
-  m_Layer: 0
-  m_Name: Load card into table select
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &35459869
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 35459868}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 784.07776, y: 389.84018, z: 2175.299}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &42084722
 GameObject:
   m_ObjectHideFlags: 0
@@ -6527,19 +6496,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c4fb393ae034d4290b6c7f91111b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - amount: 6
-    enemyPrefabs: {fileID: 4374877357773752056, guid: 632c8ca7758aa0e4c98d9225adfff08d, type: 3}
-    enemyID: 0
-  - amount: 0
-    enemyPrefabs: {fileID: 4374877357773752056, guid: 30c6ac16394f57d40805989df8d30578, type: 3}
-    enemyID: 0
-  - amount: 0
-    enemyPrefabs: {fileID: 4374877357773752056, guid: cffd8c37e3948ae46a6f142817a87d41, type: 3}
-    enemyID: 0
-  - amount: 0
-    enemyPrefabs: {fileID: 4374877357773752056, guid: bc92a213c5a2a4749af41172d5c74643, type: 3}
-    enemyID: 0
+  enemyWaves:
+  - enemies:
+    - amount: 1
+      enemyPrefabs: {fileID: 4374877357773752056, guid: 632c8ca7758aa0e4c98d9225adfff08d, type: 3}
+      enemyID: 0
+    - amount: 1
+      enemyPrefabs: {fileID: 4374877357773752056, guid: 632c8ca7758aa0e4c98d9225adfff08d, type: 3}
+      enemyID: 0
+  - enemies:
+    - amount: 1
+      enemyPrefabs: {fileID: 4374877357773752056, guid: 632c8ca7758aa0e4c98d9225adfff08d, type: 3}
+      enemyID: 0
+    - amount: 1
+      enemyPrefabs: {fileID: 4374877357773752056, guid: 632c8ca7758aa0e4c98d9225adfff08d, type: 3}
+      enemyID: 0
+    - amount: 2
+      enemyPrefabs: {fileID: 4374877357773752056, guid: 632c8ca7758aa0e4c98d9225adfff08d, type: 3}
+      enemyID: 0
+  nextSpawnTime: 0.5
   startSpawnTime: 2
   aliveAmountEnemyCurrent: 0
 --- !u!1 &456032636
@@ -27597,7 +27572,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1979387662
 PrefabInstance:
@@ -28915,7 +28890,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2075444589
 PrefabInstance:
